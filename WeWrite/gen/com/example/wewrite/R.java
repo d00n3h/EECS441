@@ -35,13 +35,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090006;
-        public static final int button1=0x7f090001;
-        public static final int button2=0x7f090002;
-        public static final int dummy_button=0x7f090005;
-        public static final int editText1=0x7f090000;
-        public static final int fullscreen_content=0x7f090003;
-        public static final int fullscreen_content_controls=0x7f090004;
+        public static final int action_settings=0x7f090008;
+        public static final int button1=0x7f090004;
+        public static final int button2=0x7f090003;
+        public static final int dummy_button=0x7f090007;
+        public static final int editText1=0x7f090001;
+        public static final int fullscreen_content=0x7f090005;
+        public static final int fullscreen_content_controls=0x7f090006;
+        public static final int redoButton=0x7f090002;
+        public static final int undoButton=0x7f090000;
     }
     public static final class layout {
         public static final int activity_document_screen=0x7f030000;
@@ -61,8 +63,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int enter_text=0x7f060009;
         public static final int hello_world=0x7f060005;
         public static final int join_session_button=0x7f060008;
+        public static final int redoButton=0x7f06000b;
         public static final int title_activity_document_screen=0x7f060006;
         public static final int title_activity_login_screen=0x7f060003;
+        public static final int undoButton=0x7f06000a;
     }
     public static final class style {
         /** 

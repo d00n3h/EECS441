@@ -11,5 +11,7 @@
     <string name="create_session_button">Create Session</string>
     <string name="join_session_button">Join Session</string>
     <string name="enter_text">Enter text here</string>
+    <string name="undoButton">Undo</string>
+    <string name="redoButton">Redo</string>
 
 </resources>
