@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.wewrite.MainActivity"
+            android:name="com.example.wewrite.LoginScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -23,6 +23,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+<!--         <activity
+            android:name="com.example.wewrite.LoginScreen"
+            android:label="@string/title_activity_login_screen" >
+        </activity> -->
+        <activity
+            android:name="com.example.wewrite.DocumentScreen"
+            android:label="@string/title_activity_document_screen" >
         </activity>
     </application>
 
