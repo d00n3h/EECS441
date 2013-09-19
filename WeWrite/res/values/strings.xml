@@ -13,5 +13,7 @@
     <string name="enter_text">Enter text here</string>
     <string name="undoButton">Undo</string>
     <string name="redoButton">Redo</string>
+    <string name="title_activity_create_session">CreateSession</string>
+    <string name="create_session_name">Put session name here</string>
 
 </resources>
