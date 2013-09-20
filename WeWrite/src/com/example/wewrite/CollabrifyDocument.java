@@ -3,11 +3,9 @@ package com.example.wewrite;
 public class CollabrifyDocument
 {
   private String text;
-  private int length;
 
-  public CollabrifyDocument(String text, int length) {
-    this.text = text;
-    this.length = length;
+  public CollabrifyDocument() {
+	  this.text = new String("");
   }
   
   public void performAction( CollabrifyUser user, UserAction action ) {
@@ -18,4 +16,13 @@ public class CollabrifyDocument
       
     }
   }
+  
+  public String getText() {
+	return text;
+  }
+
+	public void setText(String text) {
+		this.text = text;
+	}
+	
 }

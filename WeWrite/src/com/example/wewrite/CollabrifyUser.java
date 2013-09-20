@@ -7,7 +7,9 @@ public class CollabrifyUser
   private Stack<UserAction> pastActions;
   private Stack<UserAction> undoneActions;
   
-  public CollabrifyUser() {    
+  public CollabrifyUser() {   
+	  pastActions = new Stack<UserAction>();
+	  undoneActions = new Stack<UserAction>();
   }
   
   public void addPastAction( UserAction action ) {
