@@ -2,10 +2,14 @@ package com.example.wewrite;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class DocumentScreen extends Activity {
@@ -24,6 +28,35 @@ public class DocumentScreen extends Activity {
 		documentText = (EditText)findViewById(R.id.editText1);
 		documentText.setLongClickable(false);
 		//documentText.setText(document.getText());
+		
+		/********* REDO AND UNDO ************/
+		 
+
+		Button undoButton = (Button)findViewById(R.id.undoButton);
+		undoButton.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				UserAction undoAction = user.undoPastAction();
+				performAction(undoAction);
+			}
+		});
+		
+		Button redoButton = (Button)findViewById(R.id.redoButton);
+		redoButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				UserAction redoAction = user.redoUndoneAction();
+				performAction(redoAction);
+			}
+		});
+		
+		
+		/************************************/
+		
+		
+		
+		
 		
 		documentText.addTextChangedListener(new TextWatcher() {
 			int addIndex;
