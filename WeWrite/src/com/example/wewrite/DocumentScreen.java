@@ -37,7 +37,10 @@ public class DocumentScreen extends Activity {
 			
 			public void onClick(View v) {
 				UserAction undoAction = user.undoPastAction();
-				performAction(undoAction);
+				if(undoAction != null) {
+				    performAction(undoAction);
+				    documentText.setText(document.getText());
+				}
 			}
 		});
 		
@@ -47,7 +50,10 @@ public class DocumentScreen extends Activity {
 			@Override
 			public void onClick(View v) {
 				UserAction redoAction = user.redoUndoneAction();
-				performAction(redoAction);
+				if(redoAction != null) {
+				    performAction(redoAction);
+				    documentText.setText(document.getText());
+				}
 			}
 		});
 		
@@ -91,6 +97,7 @@ public class DocumentScreen extends Activity {
 				}
 				documentText.removeTextChangedListener(this);
 				UserAction action;
+				UserAction undoAction;
 				if( s.length() > document.getText().length() ) {
 					action = new UserAction("add", addIndex, addChar);
 				} else {
@@ -112,25 +119,20 @@ public class DocumentScreen extends Activity {
 	}
 	
 	private void performAction( UserAction action ) {
-		int cursorPosition;
 		String text = document.getText();
 		String part1, part2;
 		if( action.getActionType().equals("add")) {
 			part1 = text.substring(0, action.getCursorPosition() );
 			part2 = text.substring(action.getCursorPosition());
 			text = part1 + action.getCharAffected() + part2;
-			cursorPosition = action.getCursorPosition() + 1;
 			System.out.println("charAffected: " + action.getCharAffected() + " at index: " + action.getCursorPosition());
 		} else{
 			part1 = text.substring(0, action.getCursorPosition() );
 			part2 = text.substring(action.getCursorPosition() + 1);
 			text = part1 + part2;
-			cursorPosition = action.getCursorPosition();
 		}
 		document.setText(text);
 		System.out.println(document.getText());
-		//documentText.setText(text);
-		//documentText.setSelection(cursorPosition);
 	}
 	
 	

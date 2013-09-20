@@ -13,17 +13,33 @@ public class CollabrifyUser
   }
   
   public void addPastAction( UserAction action ) {
-    pastActions.push(action);
+    pastActions.push(flipActionType(action));
   }
   
   public UserAction undoPastAction() {
-    undoneActions.push(pastActions.peek());
+    if(pastActions.empty()) {
+      return null;
+    }
+    undoneActions.push(flipActionType(pastActions.peek()));
     return pastActions.pop();
   }
   
   public UserAction redoUndoneAction() {
-    pastActions.push(undoneActions.peek());
+    if(undoneActions.empty()) {
+      return null;
+    }
+    pastActions.push(flipActionType(undoneActions.peek()));
     return undoneActions.pop();
+  }
+  
+  private UserAction flipActionType( UserAction action ) {
+    String type = new String();
+    if(action.getActionType().equals("add")) {
+      type = "del";
+    } else {
+      type = "add";
+    }
+    return new UserAction(type, action.getCursorPosition(), action.getCharAffected());
   }
 
 }
