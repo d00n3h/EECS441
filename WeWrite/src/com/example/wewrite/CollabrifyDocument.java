@@ -18,7 +18,7 @@ public class CollabrifyDocument
   }
   
   public String getText() {
-	return text;
+    return text;
   }
 
 	public void setText(String text) {
