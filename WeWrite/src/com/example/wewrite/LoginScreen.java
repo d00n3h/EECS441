@@ -60,10 +60,9 @@ public class LoginScreen extends Activity {
     joinSessionButton = (Button)findViewById(R.id.button2);
     leaveSessionButton = (Button)findViewById(R.id.button3);
     endSessionButton = (Button)findViewById(R.id.button4);
-
+    broadcastTimer = new Timer();
 
     documentText.setLongClickable(false);
-    
     
     undoButton.setOnClickListener(new OnClickListener() {
       
@@ -158,7 +157,7 @@ public class LoginScreen extends Activity {
           @Override
           public void run()
           {
-            
+            startTimer();
           }
           
         });
@@ -174,13 +173,13 @@ public class LoginScreen extends Activity {
       @Override
       public void onBaseFileUploadComplete(long baseFileSize)
       {
-        // TODO Auto-generated method stub
         
       }
 
       @Override
       public void onSessionJoined(long maxOrderId, long baseFileSize)
       {
+        
         Log.i(CollabrifyClient.class.getSimpleName(), "session Joined");
         if (baseFileSize > 0) {
           baseFileReceiveBuffer = new ByteArrayOutputStream((int) baseFileSize);
@@ -189,6 +188,7 @@ public class LoginScreen extends Activity {
           @Override
           public void run()
           {
+            startTimer();
             setDocumentTextVisible();
             leaveSessionButton.setVisibility(View.VISIBLE);
           }
@@ -199,7 +199,6 @@ public class LoginScreen extends Activity {
       @Override
       public void onBaseFileChunkReceived(byte[] baseFileChunk)
       {
-        // TODO Auto-generated method stub
         
       }
 
@@ -210,7 +209,15 @@ public class LoginScreen extends Activity {
         runOnUiThread(new Runnable() {
           @Override
           public void run()
-          {                      
+          {                 
+            try
+            {
+              stopTimer();
+            }
+            catch( InterruptedException e )
+            {
+              e.printStackTrace();
+            }
           }          
         });        
       }
@@ -228,8 +235,8 @@ public class LoginScreen extends Activity {
           {
             Utils.printMethodName(CollabrifyClient.class.getSimpleName());
             String message = new String(data);
-            //broadcastedText.setText(message);
-            
+            document.setText(message);
+            documentText.setText(message);
           }
 
         });
@@ -277,8 +284,14 @@ public class LoginScreen extends Activity {
       @Override
       public void onParticipantJoined(CollabrifyParticipant p)
       {
-        // TODO Auto-generated method stub
-        
+        try
+        {
+          myClient.broadcast(document.getText().getBytes(), " ");
+        }
+        catch( CollabrifyException e )
+        {
+          e.printStackTrace();
+        }
       }
 
       @Override
@@ -296,7 +309,6 @@ public class LoginScreen extends Activity {
       @Override
       public void onSessionEnd(long id)
       {
-        // TODO Auto-generated method stub
         
       }
 		  
@@ -350,8 +362,6 @@ public class LoginScreen extends Activity {
       } 
 		});
 		
-		
-		
 		createSessionButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				  Random rand = new Random();
@@ -385,18 +395,6 @@ public class LoginScreen extends Activity {
       }
 		  
 		});
-	}
-	
-
-	class Broadcast extends TimerTask {
-
-    @Override
-    public void run()
-    {
-      System.out.println("ERMAHGERD");
-      
-    }
-	  
 	}
 	
 	@Override
@@ -440,4 +438,28 @@ public class LoginScreen extends Activity {
     undoButton.setVisibility(View.VISIBLE);
     redoButton.setVisibility(View.VISIBLE);
   }
+  
+  class Broadcast extends TimerTask {
+    @Override
+    public void run()
+    {
+      try
+      {
+        myClient.broadcast(document.getText().getBytes(), "");
+      }
+      catch( CollabrifyException e )
+      {
+        e.printStackTrace();
+      }
+    }
+  }
+  
+  private void startTimer() {
+    Broadcast broadcast = new Broadcast();
+    broadcastTimer.scheduleAtFixedRate(broadcast, 0, 2000);
+  }
+  private void stopTimer() throws InterruptedException {
+    broadcastTimer.purge();
+  }
+  
 }
