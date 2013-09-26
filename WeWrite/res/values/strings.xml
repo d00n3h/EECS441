@@ -15,5 +15,7 @@
     <string name="redoButton">Redo</string>
     <string name="title_activity_create_session">CreateSession</string>
     <string name="create_session_name">Put session name here</string>
+    <string name="leave_session_button">Leave Session</string>
+    <string name="end_session_button">End Session</string>
 
 </resources>
