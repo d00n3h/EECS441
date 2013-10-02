@@ -1,5 +1,7 @@
 package com.example.wewrite;
 
+import java.io.Serializable;
+
 public class UserAction
 {
   private String actionType;

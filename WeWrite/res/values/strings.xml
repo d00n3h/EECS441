@@ -17,5 +17,7 @@
     <string name="create_session_name">Put session name here</string>
     <string name="leave_session_button">Leave Session</string>
     <string name="end_session_button">End Session</string>
+    <string name="broadcast_button">Broadcast</string>
+    <string name="Switch">Switch</string>
 
 </resources>
